@@ -9,21 +9,20 @@ class GeoAPI:
     @classmethod
     def is_hot_in_pehuajo(cls):
         try:
-            params ={
-                "lat": cls.LAT,
-                "lon": cls.LON,
-                "appid": cls.API_KEY,
-                "units": "metric" 
-            }
-            response = requests.get(cls.WEATHER_API_URL, params=params)
-            response.raise_for_status()
+            url = f"https://api.openweathermap.org/data/2.5/weather?lat={cls.LAT}&lon={cls.LON}&appid={cls.API_KEY}&units=metric"
 
-            data = response.json()
-            temperature = data['main']['temp']
+            response = requests.get(url)
+            if response.status_code == 200:
+                data = response.json()
+                temperature = data['main']['temp']
 
-            return temperature > 28
-        except requests.exceptions.RequestException:
-            return False
+                if temperature >= 28:
+                    return True
+                else:
+                    return False
+            else:
+                print(f"Error getting API response: {response.status_code}")
+                return False
         except Exception as e:
             print("Error", e)
             return False
