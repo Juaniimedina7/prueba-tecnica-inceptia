@@ -28,10 +28,13 @@ def is_product_available(product_name,product_df):
     if not product_row.empty:
         quantity_available = product_row.iloc[0]['quantity']
         if quantity_available > 0:
+            print('Hay stock del producto seleccionado')
             return True
         else:
+            print('No hay stock o no existe el producto seleccionado')
             return False
     else:
+        print('No hay stock o no existe el producto seleccionado')
         return False
 
 
