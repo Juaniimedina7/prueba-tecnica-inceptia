@@ -1,3 +1,17 @@
+'''
+Completar el método is_hot_in_pehuajo con el siguiente objetivo:
+
+~ Consultar la información de clima y devolver True si la temperatura actual
+supera los 28 grados celsius o False caso contrario. Esto implica incluso
+devolver False ante cualquier excepción http.
+
+Información extra:
+API Información de clima:
+
+~ Link a documentacion: https://openweathermap.org/current#geo
+
+'''
+
 import requests
 
 class GeoAPI:
